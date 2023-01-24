@@ -1,5 +1,5 @@
 /**
- * A simple "Hello World" example.
+ * A simple "Hello World" example...
  * 
  * @author hfeild
  */
