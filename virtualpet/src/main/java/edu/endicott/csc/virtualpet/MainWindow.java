@@ -1,28 +1,30 @@
 package edu.endicott.csc.virtualpet;
 
 import javax.swing.JOptionPane;
-//;jsdlkfjlksjfd
 
 /**
  *
  * @author mocean
  */
 public class MainWindow extends javax.swing.JFrame {
-
+    Dog dog;
+    
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
-        String name = JOptionPane.showInputDialog(this, "Please enter the name "
+        dog = new Dog();
+       
+        dog.setName(JOptionPane.showInputDialog(this, "Please enter the name "
                 + "of your new pet.",
                 "Pet name?", 
-                JOptionPane.PLAIN_MESSAGE);
-        
+                JOptionPane.PLAIN_MESSAGE));
+        dog.name = "Howdy Doody";
         // what if the user selected cancel?
         
         initComponents();
         
-        petsNameLabel.setText(name);
+        petsNameLabel.setText(dog.getName());
     }
 
     /**
@@ -171,37 +173,39 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void feedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_feedButtonActionPerformed
-        hungerBar.setValue(hungerBar.getValue()-4);
-        sleepinessBar.setValue(sleepinessBar.getValue()+2);
-        boredomBar.setValue(boredomBar.getValue()+1);
+        dog.feed();
+//        hungerBar.setValue(hungerBar.getValue()-4);
+        hungerBar.setValue(dog.getHunger());
+
+//        sleepinessBar.setValue(sleepinessBar.getValue()+2);
+        sleepinessBar.setValue(dog.getSleepiness());
+
+//        boredomBar.setValue(boredomBar.getValue()+1);
+        boredomBar.setValue(dog.getBoredom());
+
     }//GEN-LAST:event_feedButtonActionPerformed
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        boredomBar.setValue(boredomBar.getValue()-4);
-        sleepinessBar.setValue(sleepinessBar.getValue() + 2);
-        hungerBar.setValue(hungerBar.getValue() + 3);
-        
-        if(hungerBar.getValue() > 8)
-            happinessBar.setValue(happinessBar.getValue() - 1);
-        if(sleepinessBar.getValue() > 8)
-            happinessBar.setValue(happinessBar.getValue() - 1);
-        if(boredomBar.getValue() > 8)
-            happinessBar.setValue(happinessBar.getValue() - 1);
-        if((boredomBar.getValue() < 3) && (sleepinessBar.getValue() < 3) && (hungerBar.getValue() < 3)){
-            happinessBar.setValue(happinessBar.getValue() + 1);
-        }  
+        dog.play();
+        hungerBar.setValue(dog.getHunger());
+        sleepinessBar.setValue(dog.getSleepiness());
+        boredomBar.setValue(dog.getBoredom());
+        happinessBar.setValue(dog.happiness);
+          
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void putToBedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_putToBedButtonActionPerformed
-        sleepinessBar.setValue(1);
-        hungerBar.setValue(hungerBar.getValue()+1);
-        boredomBar.setValue(boredomBar.getValue()+1);
+        dog.putToBed();
+        hungerBar.setValue(dog.getHunger());
+        sleepinessBar.setValue(dog.getSleepiness());
+        boredomBar.setValue(dog.getBoredom());
     }//GEN-LAST:event_putToBedButtonActionPerformed
 
     private void ignoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ignoreButtonActionPerformed
-        boredomBar.setValue(boredomBar.getValue()+2);
-        hungerBar.setValue(hungerBar.getValue()+1);
-        sleepinessBar.setValue(sleepinessBar.getValue()+1);
+        dog.ignore();
+        hungerBar.setValue(dog.getHunger());
+        sleepinessBar.setValue(dog.getSleepiness());
+        boredomBar.setValue(dog.getBoredom());
     }//GEN-LAST:event_ignoreButtonActionPerformed
 
     /**

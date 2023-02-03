@@ -11,8 +11,8 @@ package edu.endicott.csc.virtualpet;
 public abstract class Pet {
 
        
-    int boredom, sleepiness, hunger, happiness;
-    String name;
+    protected int boredom, sleepiness, hunger, happiness;
+    protected String name;
     
     public abstract void feed();
     public abstract void putToBed();
@@ -38,6 +38,10 @@ public abstract class Pet {
 
     public String getName() {
         return name;
+    }
+    
+    public void setName(String name){
+        this.name = name;
     }
     
 }
