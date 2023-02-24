@@ -8,7 +8,7 @@ import java.awt.Graphics;
  * 
  * @author hfeild
  */
-public abstract class Shape implements Drawable, Selectable {
+public abstract class Shape implements Drawable, Selectable, Wanderable {
     protected int x, y;  // Upper left corner.
     protected boolean isSelected;
     
@@ -36,5 +36,12 @@ public abstract class Shape implements Drawable, Selectable {
         isSelected = false;
     }
     
-//    public abstract void wander();
+    /**
+     * Moves the shape in a random direction.
+     */
+    @Override
+    public void wander(){
+        x += (int) (Math.random()*10-5);
+        y += (int) (Math.random()*10-5);
+    }
 }

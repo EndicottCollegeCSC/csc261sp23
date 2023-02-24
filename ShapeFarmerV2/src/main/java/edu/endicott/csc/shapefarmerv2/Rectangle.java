@@ -10,7 +10,7 @@ import java.awt.Graphics;
  */
 public class Rectangle extends Shape {
 //    private int x, y;  // Upper left corner.
-      private int width, height;
+    private int width, height;
 //    private boolean isSelected;
     
     /**
@@ -58,7 +58,7 @@ public class Rectangle extends Shape {
                y >= this.y && y <= this.y+height;
     }
     
-    public void wander(){
-        System.out.println("In Rectangle.wander()");
-    }
+//    public void wander(){
+//        System.out.println("In Rectangle.wander()");
+//    }
 }

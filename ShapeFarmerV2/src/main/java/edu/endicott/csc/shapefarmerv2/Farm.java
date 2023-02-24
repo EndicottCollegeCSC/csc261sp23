@@ -1,10 +1,17 @@
 package edu.endicott.csc.shapefarmerv2;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
+
 
 /**
  * Responsible for displaying the player's farm, including the shapes the
@@ -12,8 +19,12 @@ import javax.swing.JPanel;
  * 
  * @author hfeild
  */
-public class Farm extends JPanel implements MouseListener {
+public class Farm extends JPanel implements MouseListener, ActionListener {
+    private final int TIME_SPEEDUP = 3600; // 1 second in real life = 1 hour (60*60) seconds in the game.
+    private final int UPDATE_INTERVAL_MS_REAL = 1000*60*60*2; // Every 2 hours.
+    private final int UPDATE_INTERVAL_MS_GAME = (int) (UPDATE_INTERVAL_MS_REAL / TIME_SPEEDUP);
     private ArrayList<Shape> shapes;
+    private Timer timer;
     
     public Farm(){
         this.addMouseListener((MouseListener) this);
@@ -21,6 +32,8 @@ public class Farm extends JPanel implements MouseListener {
         shapes.add(new Rectangle(10, 10, 20, 25));
         shapes.add(new Circle(50, 60, 10));
         
+        timer = new Timer(UPDATE_INTERVAL_MS_GAME, this);
+        timer.start();
     }
     
     /**
@@ -76,6 +89,21 @@ public class Farm extends JPanel implements MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
         System.out.println("Exited at "+ e.toString());
+    }
+
+    /**
+     * Called by Swing Timer. Performs updates on shape characteristics.
+     * 
+     * @param e (Ignored)
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        System.out.println("Wandering all shapes.");
+        for(Shape shape : shapes){
+            shape.wander();
+        }
+        
+        this.repaint();
     }
 
  
