@@ -9,5 +9,5 @@ package edu.endicott.csc.shapefarmerv2;
  * @author hfeild
  */
 public interface Wanderable {
-    public void wander();
+    public void wander(int minX, int maxX, int minY, int maxY);
 }

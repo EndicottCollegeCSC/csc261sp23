@@ -21,8 +21,8 @@ import javax.swing.Timer;
  */
 public class Farm extends JPanel implements MouseListener, ActionListener {
     private final int TIME_SPEEDUP = 3600; // 1 second in real life = 1 hour (60*60) seconds in the game.
-    private final int UPDATE_INTERVAL_MS_REAL = 1000*60*60*2; // Every 2 hours.
-    private final int UPDATE_INTERVAL_MS_GAME = (int) (UPDATE_INTERVAL_MS_REAL / TIME_SPEEDUP);
+    private final int UPDATE_INTERVAL_MS_GAME = 1000*60*30; // Every 1/2 hours.
+    private final int UPDATE_INTERVAL_MS_REAL = (int) (UPDATE_INTERVAL_MS_GAME / TIME_SPEEDUP);
     private ArrayList<Shape> shapes;
     private Timer timer;
     
@@ -32,7 +32,7 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
         shapes.add(new Rectangle(10, 10, 20, 25));
         shapes.add(new Circle(50, 60, 10));
         
-        timer = new Timer(UPDATE_INTERVAL_MS_GAME, this);
+        timer = new Timer(UPDATE_INTERVAL_MS_REAL, this);
         timer.start();
     }
     
@@ -100,7 +100,9 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         System.out.println("Wandering all shapes.");
         for(Shape shape : shapes){
-            shape.wander();
+            shape.wander(0, getWidth(), 0, getHeight());
+//            shape.wander(50, 200, 50, 200);
+
         }
         
         this.repaint();

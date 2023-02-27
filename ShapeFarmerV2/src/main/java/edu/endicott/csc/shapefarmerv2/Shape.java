@@ -40,8 +40,14 @@ public abstract class Shape implements Drawable, Selectable, Wanderable {
      * Moves the shape in a random direction.
      */
     @Override
-    public void wander(){
-        x += (int) (Math.random()*10-5);
-        y += (int) (Math.random()*10-5);
+    public void wander(int minX, int maxX, int minY, int maxY){
+        // TODO -- make it so that x can't be less than 0 or more than
+        //         than the Farm panel width.
+        //         y can't be less than 0 or more than the Farm panel height.
+        
+        x =  Math.max(Math.min(x + (int) (Math.random()*50-25), maxX), minX);
+        y =  Math.max(Math.min(y + (int) (Math.random()*50-25), maxY), minY);
+        
+        //y += (int) (Math.random()*10-5);
     }
 }
