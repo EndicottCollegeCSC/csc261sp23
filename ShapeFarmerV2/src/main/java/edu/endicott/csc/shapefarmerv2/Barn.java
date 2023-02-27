@@ -8,28 +8,45 @@ import java.awt.Graphics;
  * 
  * @author hfeild
  */
-public class Rectangle extends Shape {
-//    private int x, y;  // Upper left corner.
+public class Barn implements Drawable, Selectable {
+    private int x, y;  // Upper left corner.
+    private boolean isSelected;
     private int width, height;
     
-    /**
-     * Creates a new Rectangle.
-     * 
-     * @param x The x position of the upper left corner.
-     * @param y The y position of the upper left corner.
-     * @param width The rectangle's width.
-     * @param height  The rectangle's height.
-     */
-    public Rectangle(int x, int y, int width, int height){
+    public Barn(int x, int y, int width, int height){
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
-        isSelected = false;
     }
     
     /**
-     * Draws the shape. If selected, the shape is highlighted with a border.
+     * @return Whether the shape is selected.
+     */
+    @Override
+    public boolean isSelected(){
+        return isSelected;
+    }
+    
+    /**
+     * Selects the shape. This will cause it to be highlighted when drawn next.
+     */
+    @Override
+    public void select(){
+        isSelected = true;
+    }
+    
+    /**
+     * Deselects the shape.
+     */
+    @Override
+    public void deselect(){
+        isSelected = false;
+    }
+    
+ 
+    /**
+     * Draws the barn. If selected, the shape is highlighted with a border.
      * 
      * @param g The Graphics object to paint to. 
      */
@@ -40,12 +57,12 @@ public class Rectangle extends Shape {
             g.fillRect(x-1, y-1, width+2, height+2);
         }
         
-        g.setColor(Color.blue);
+        g.setColor(Color.orange);
         g.fillRect(x, y, width, height);
     }
     
     /**
-     * Checks if the given mouse click coordinates overlap this shape.
+     * Checks if the given mouse click coordinates overlap this barn.
      * 
      * @param x The x position of the click.
      * @param y The y position of the click.
@@ -57,16 +74,4 @@ public class Rectangle extends Shape {
                y >= this.y && y <= this.y+height;
     }
     
-//    public void wander(){
-//        System.out.println("In Rectangle.wander()");
-//    }
-    
-    /**
-     * Determines whether this rectangle is a square.
-     * 
-     * @return True if this rectangle's width and height are the same.
-     */
-    public boolean isSquare(){
-        return width == height;
-    }
 }
