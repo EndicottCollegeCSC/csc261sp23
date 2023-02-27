@@ -50,4 +50,13 @@ public abstract class Shape implements Drawable, Selectable, Wanderable {
         
         //y += (int) (Math.random()*10-5);
     }
+    
+    public int getX(){
+        return x;
+    }
+    
+    public int getY(){
+        return y;
+    }
+    
 }
