@@ -8,7 +8,7 @@ import java.awt.Graphics;
  * 
  * @author hfeild
  */
-public abstract class Shape implements Drawable, Selectable, Wanderable {
+public abstract class Shape implements Drawable, Selectable, Wanderable, Comparable<Shape> {
     protected int x, y;  // Upper left corner.
     protected boolean isSelected;
     
@@ -57,6 +57,28 @@ public abstract class Shape implements Drawable, Selectable, Wanderable {
     
     public int getY(){
         return y;
+    }
+    
+    @Override
+    public String toString(){
+        return this.getClass()+"("+ x +","+ y +")";
+    }
+
+    @Override
+    public int compareTo(Shape o) {
+        if(this.x > o.x){
+            return 1;
+        } else if(this.x < o.x){
+            return -1;
+        } else {
+            if(this.y > o.y){
+                return 1;
+            } else if(this.y < o.y) {
+                return -1;
+            } else {
+                return 0;
+            }
+        }
     }
     
 }

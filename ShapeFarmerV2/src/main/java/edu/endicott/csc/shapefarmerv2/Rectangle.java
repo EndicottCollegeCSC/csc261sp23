@@ -11,7 +11,8 @@ import java.awt.Graphics;
 public class Rectangle extends Shape {
 //    private int x, y;  // Upper left corner.
     private int width, height;
-    
+//    private boolean isSelected;
+
     /**
      * Creates a new Rectangle.
      * 

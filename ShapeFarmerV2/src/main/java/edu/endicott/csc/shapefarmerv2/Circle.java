@@ -9,7 +9,7 @@ import java.awt.Graphics;
  * @author hfeild
  */
 public class Circle extends Shape {
-//    private int x, y,  // Upper left corner.
+//    private int x, y;  // Upper left corner.
       private int radius;
 //    private boolean isSelected;
     
