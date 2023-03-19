@@ -39,6 +39,23 @@ public class A {
         }
     }
     
+    public static class StaticC {
+        public int a = 20;
+        protected int b = 21;
+        int c = 22;
+        private int d = 23;
+
+        @Override
+        public String toString(){
+            return "a: "+ a +", b: "+ b + ", c: "+ c +", d: "+ d; //+    
+//                "\nA.this.a: "+ A.this.a +
+//                ", A.this.b: "+ A.this.b + 
+//                ", A.this.c: "+ A.this.c +
+//                // CAN do this:
+//                 ", A.this.d: "+ A.this.d;
+        }
+    }
+    
     public Interface1 anInterface = new Interface1() {
         public int a = 10;
         protected int b = 11;
