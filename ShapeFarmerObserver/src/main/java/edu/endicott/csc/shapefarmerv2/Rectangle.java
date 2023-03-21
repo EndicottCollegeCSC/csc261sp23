@@ -22,7 +22,8 @@ public class Rectangle extends Shape {
      * @param width The rectangle's width.
      * @param height  The rectangle's height.
      */
-    public Rectangle(int x, int y, int width, int height){
+    public Rectangle(Farm farm, int x, int y, int width, int height){
+        super(farm);
         this.x = x;
         this.y = y;
         this.width = width;

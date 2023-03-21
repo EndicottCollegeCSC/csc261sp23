@@ -24,18 +24,32 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
     private final int UPDATE_INTERVAL_MS_GAME = 1000*60*30; // Every 1/2 hours.
     private final int UPDATE_INTERVAL_MS_REAL = (int) (UPDATE_INTERVAL_MS_GAME / TIME_SPEEDUP);
     private ArrayList<Shape> shapes;
+    private ArrayList<MouseListener> mouseListeners;
     private Timer timer;
     
     public Farm(){
+        mouseListeners = new ArrayList<>();
         this.addMouseListener((MouseListener) this);
         shapes = new ArrayList<>();
-        shapes.add(new Rectangle(10, 10, 20, 25));
-        shapes.add(new Circle(50, 60, 10));
+        shapes.add(new Rectangle(this, 10, 10, 20, 25));
+        shapes.add(new Circle(this, 50, 60, 10));
         
+        
+
         timer = new Timer(UPDATE_INTERVAL_MS_REAL, this);
         timer.start();
     }
+
+    public void registerMouseListener(MouseListener listener){
+        // What goes here to register listener with Farm?
+        mouseListeners.add(listener);
+    }
     
+    public void unregisterMouseListener(MouseListener listener){
+        // What goes here to unregister listener with Farm?
+        mouseListeners.remove(listener);
+    }
+
     /**
      * Draws all of the shapes that live on the farm.
      * 
@@ -62,8 +76,8 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
     public void mouseClicked(MouseEvent e) {
         System.out.println("Click at "+ e.toString());
         
-        for(Shape shape : shapes){
-            shape.mouseClicked(e);
+        for(MouseListener listener : mouseListeners){
+            listener.mouseClicked(e);
         }
         // for(Shape shape : shapes){
         //     if(shape.wasClicked(e.getX(), e.getY())){
@@ -77,29 +91,29 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        for(Shape shape : shapes){
-            shape.mousePressed(e);
+        for(MouseListener listener : mouseListeners){
+            listener.mousePressed(e);
         }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        for(Shape shape : shapes){
-            shape.mouseReleased(e);
+        for(MouseListener listener : mouseListeners){
+            listener.mouseReleased(e);
         }
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        for(Shape shape : shapes){
-            shape.mouseEntered(e);
+        for(MouseListener listener : mouseListeners){
+            listener.mouseEntered(e);
         }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        for(Shape shape : shapes){
-            shape.mouseExited(e);
+        for(MouseListener listener : mouseListeners){
+            listener.mouseExited(e);
         }
     }
 

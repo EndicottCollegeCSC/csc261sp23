@@ -22,7 +22,8 @@ public class Circle extends Shape {
      * @param width The rectangle's width.
      * @param height  The rectangle's height.
      */
-    public Circle(int x, int y, int radius){
+    public Circle(Farm farm, int x, int y, int radius){
+        super(farm);
         this.x = x;
         this.y = y;
         this.radius = radius;

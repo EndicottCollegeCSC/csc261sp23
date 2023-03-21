@@ -17,13 +17,13 @@ public class WanderTester {
 //        shape.wander();
         
         
-        ArrayList<Shape> shapes = new ArrayList<>();
-        shapes.add(new Rectangle(0, 10, 25, 30));
-        shapes.add(new Circle(50, 55, 5));
+//         ArrayList<Shape> shapes = new ArrayList<>();
+//         shapes.add(new Rectangle(0, 10, 25, 30));
+//         shapes.add(new Circle(50, 55, 5));
         
-        for(Shape shape : shapes){
-//            shape.wander();
-        }
+//         for(Shape shape : shapes){
+// //            shape.wander();
+//         }
         
     }
 }

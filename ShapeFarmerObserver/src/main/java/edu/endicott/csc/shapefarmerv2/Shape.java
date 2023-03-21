@@ -13,6 +13,10 @@ public abstract class Shape implements Drawable, Selectable, Wanderable, Compara
     protected int x, y;  // Upper left corner.
     protected boolean isSelected;
     
+    public Shape(Farm farm){
+        farm.registerMouseListener(this);
+    }
+
     /**
      * @return Whether the shape is selected.
      */
