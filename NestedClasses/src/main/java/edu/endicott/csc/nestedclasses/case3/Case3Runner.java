@@ -23,7 +23,6 @@ public class Case3Runner {
         System.out.println("myC: "+ myC);
         System.out.println("myStaticC: "+ myStaticC);
 
-        
 //        A myA = new A();
 //        B myB = new B();
 //        C myC = new C();
