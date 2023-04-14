@@ -6,12 +6,21 @@ package edu.endicott.csc.shapefarmerv2;
  * @author hfeild
  */
 public class ShapeFarmer extends javax.swing.JFrame {
-
+    private static ShapeFarmer shapeFarmer;
     /**
-     * Creates new form ShapeFarmer 
+     * Creates new form ShapeFarmer
      */
-    public ShapeFarmer() {
+    private ShapeFarmer() {
+        shapeFarmer = this;
         initComponents();
+    }
+
+    public static ShapeFarmer getInstance(){
+        return shapeFarmer;
+    }
+
+    public void printMessage(String message){
+        System.out.println("From "+ System.identityHashCode(this) +": "+ message);
     }
 
     /**

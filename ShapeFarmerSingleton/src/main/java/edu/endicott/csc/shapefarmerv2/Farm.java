@@ -23,42 +23,16 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
     private final int TIME_SPEEDUP = 3600; // 1 second in real life = 1 hour (60*60) seconds in the game.
     private final int UPDATE_INTERVAL_MS_GAME = 1000*60*30; // Every 1/2 hours.
     private final int UPDATE_INTERVAL_MS_REAL = (int) (UPDATE_INTERVAL_MS_GAME / TIME_SPEEDUP);
-    // private ArrayList<Shape> shapes;
-    //private ArrayList<Pen<Shape>> pens;
-    private ArrayList<Pen<? extends Shape>> pens;
-    // private ArrayList<Pen<Rectangle>> rectanglePens;
-    // private ArrayList<Pen<Circle>> circlePens;
-    private Pen<Rectangle> rectanglePen;
-    private Pen<Circle> circlePen;
-    private Pen<Shape> shapePen;
+    private ArrayList<Shape> shapes;
     private Timer timer;
     
     public Farm(){
         this.addMouseListener((MouseListener) this);
-        // shapes = new ArrayList<>();
-        pens = new ArrayList<>();
-        // rectanglePens = new ArrayList<>();
-        // circlePens = new ArrayList<>();
-        rectanglePen = new Pen<>(10, 10, 100, 100);
-        circlePen = new Pen<>(10, 150, 150, 100);
-        shapePen = new Pen<>(10, 300, 50, 50);
-        pens.add(rectanglePen);
-        pens.add(circlePen);
-        pens.add(shapePen);
-        // rectanglePens.add(rectanglePen);
-        // circlePens.add(circlePen);
-
-        // This would be better implemented via a Factory Method class that we pass to the pen and as the pen to 
-        // call the factor n times. 
-        rectanglePen.add(new Rectangle(15, 15, 20, 25));
-        rectanglePen.add(new Rectangle(20, 20, 10, 15));
-        rectanglePen.add(new Rectangle(30, 15, 15, 15));
-        //rectanglePen.add(new Circle(75, 30, 10));
-        circlePen.add(new Circle(75, 155, 10));
-        circlePen.add(new Circle(75, 155, 15));
-
-        shapePen.add(new Rectangle(15, 315, 20, 25));
-        shapePen.add(new Circle(75, 355, 10));
+        shapes = new ArrayList<>();
+        shapes.add(new Rectangle(10, 10, 20, 25));
+        shapes.add(new Rectangle(10, 20, 30, 30));
+        shapes.add(new Rectangle(10, 50, 50, 15));
+        shapes.add(new Circle(50, 60, 10));
         
         timer = new Timer(UPDATE_INTERVAL_MS_REAL, this);
         timer.start();
@@ -74,8 +48,8 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
         super.paintComponent(g);
         
         // Draw our shapes.
-        for(Pen<? extends Shape> pen : pens){
-            pen.draw(g);
+        for(Shape shape : shapes){
+            shape.draw(g);
         }
     }
     
@@ -89,8 +63,12 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
     public void mouseClicked(MouseEvent e) {
         System.out.println("Click at "+ e.toString());
         
-        for(Pen<? extends Shape> pen : pens){
-            pen.mouseClicked(e);
+        for(Shape shape : shapes){
+            if(shape.wasClicked(e.getX(), e.getY())){
+                shape.select();
+            } else {
+                shape.deselect();
+            }
         }
         this.repaint();
     }
@@ -123,10 +101,12 @@ public class Farm extends JPanel implements MouseListener, ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         System.out.println("Wandering all shapes.");
-        for(Pen<? extends Shape> pen : pens){
-            pen.wander();
-        }
+        for(Shape shape : shapes){
+            shape.wander(0, getWidth(), 0, getHeight());
+//            shape.wander(50, 200, 50, 200);
 
+        }
+        
         this.repaint();
     }
 
