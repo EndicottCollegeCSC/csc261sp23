@@ -1,7 +1,9 @@
 public class Main extends Thread {
     private static final int ITERATIONS = 1000000;
     public void run(){
-        Counter counter = Counter.getCounter();
+        // Counter counter = Counter.getCounter();
+        // Counter2 counter = Counter2.getCounter();
+        Counter3 counter = Counter3.getCounter();
 
         System.out.println("["+ this +"] Hello from Main.run()");
         System.out.println("["+ this +"] Starting counter value: "+ counter.getValue());
@@ -21,6 +23,10 @@ public class Main extends Thread {
     }
 
     public static void main(String[] args){
+        // new Main().start();
+
+        // Question 3: will this result in different output than our previous
+        //             two examples?
         Main thread1 = new Main();
         Main thread2 = new Main();
 
