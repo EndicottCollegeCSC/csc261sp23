@@ -22,7 +22,10 @@ public class GUIThreads {
     private JLabel progressStatusLabel, rangeLabel, meanLabel, medianLabel;
     private JButton processButton;
 
+    // Question 2: What is an alternative way I could call the code in onProcessButtonPress when 
+    // the processButton is pressed? (alternative to using an anonymous class that calls onProcessButtonPressed)
     private void onProcessButtonPress(){
+    // public void actionPerformed(ActionEvent evt){
 
         SwingWorker processWorker = new SwingWorker<List<Float>, Integer>(){
 
@@ -38,8 +41,10 @@ public class GUIThreads {
                         publish((int) (i*100.0/RANDOM_NUMS));
                     }
                 }
+                
+                Collections.sort(numbers);
 
-                return numbers;
+                return numbers; // If Void, return null
             }
 
             @Override
@@ -54,7 +59,6 @@ public class GUIThreads {
 
                 try {
                     List<Float> numbers = get();
-                    Collections.sort(numbers);
                     min = numbers.get(0);
                     max = numbers.get(0);
                     for (float number : numbers){

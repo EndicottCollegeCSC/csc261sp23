@@ -1,6 +1,6 @@
 public class Counter2 {
-    private static Counter2 counter = new Counter2();
-    private volatile int c = 0;
+    private volatile static Counter2 counter = new Counter2();
+    private int c = 0;
 
     private Counter2(){
     }
