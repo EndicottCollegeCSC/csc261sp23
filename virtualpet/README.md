@@ -9,5 +9,5 @@ mvn package
 To run, do:
 
 ```bash
-java -jar target/virtualpet-1.0-SNAPSHOT-jar-with-dependencies.jar
+java -jar target/virtualpet-1.0-SNAPSHOT.jar -cp target/virtualpet-1.0-SNAPSHOT-jar-with-dependencies.jar
 ```
