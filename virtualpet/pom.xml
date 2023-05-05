@@ -11,6 +11,14 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>edu.endicott.csc.virtualpet.App</exec.mainClass>
     </properties>
+    
+  <dependencies>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>2.10.1</version>
+    </dependency>
+  </dependencies>
 
     <build>
         <plugins>
@@ -25,6 +33,22 @@
                             <mainClass>edu.endicott.csc.virtualpet.App</mainClass>
                         </manifest>
                     </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                    <goal>single</goal>
+                    </goals>
+                </execution>
+                </executions>
+                <configuration>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
                 </configuration>
             </plugin>
         </plugins>
